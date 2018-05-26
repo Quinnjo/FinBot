@@ -15,7 +15,7 @@ public class BotUtils {
 		return new ClientBuilder().withToken(token).build();
 	}
 	
-	static void sendMessage(IChannel channel, String message) {
+	public static void sendMessage(IChannel channel, String message) {
 		
 		RequestBuffer.request(() -> {
 			try {

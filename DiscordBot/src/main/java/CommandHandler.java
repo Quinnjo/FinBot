@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import sx.blah.discord.api.*;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import sx.blah.discord.util.Image;
@@ -34,6 +33,9 @@ public class CommandHandler {
 			break;
 		case "setusername":
 		case "username":
+			if (!event.getAuthor().hasRole(event.getClient().getRoleByID(197157674947837952L))) {
+				BotUtils.sendMessage(event.getChannel(), "You don't have permissions!");
+			}
 			if (args.size() > 1) {
 				BotUtils.sendMessage(event.getChannel(), "Invalid Args!");
 				return;
@@ -42,6 +44,9 @@ public class CommandHandler {
 			break;
 		case "setavatar":
 		case "avatar":
+			if (!event.getAuthor().hasRole(event.getClient().getRoleByID(197157674947837952L))) {
+				BotUtils.sendMessage(event.getChannel(), "You don't have permissions!");
+			}
 			if (args.size() != 2) {
 				BotUtils.sendMessage(event.getChannel(), "Enter an image url and an image type (png, jpg)");
 				return;
