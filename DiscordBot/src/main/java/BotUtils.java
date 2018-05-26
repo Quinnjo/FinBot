@@ -5,7 +5,7 @@ import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.RequestBuffer;
 
 import static java.lang.System.*;
-class BotUtils {
+public class BotUtils {
 	
 	//command prefix
 	static String BOT_PREFIX = "~";
