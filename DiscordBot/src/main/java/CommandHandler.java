@@ -48,6 +48,10 @@ public class CommandHandler {
 			}
 			event.getClient().changeAvatar(Image.forUrl(args.get(1), args.get(0)));
 			break;
+		case "logout":
+		case "shutdown":
+			event.getClient().logout();
+			break;
 		}
 		
 		
