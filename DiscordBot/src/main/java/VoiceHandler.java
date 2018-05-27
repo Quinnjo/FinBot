@@ -24,6 +24,9 @@ public class VoiceHandler {
 		event.getUser().addRole(event.getGuild().getRolesByName(event.getVoiceChannel().getName()).get(0));
 	}
 
+	/*
+	 * Removes role from the user that left the corresponding voice channel
+	 */
 	@EventSubscriber
 	public void onUserVoiceChannelLeaveEvent(UserVoiceChannelLeaveEvent event) {
 
@@ -36,6 +39,9 @@ public class VoiceHandler {
 		event.getUser().removeRole(event.getGuild().getRolesByName(event.getVoiceChannel().getName()).get(0));
 	}
 
+	/*
+	 * Removes old role from user and adds new role to user for each voice channel
+	 */
 	@EventSubscriber
 	public void onUserVoiceChannelMoveEvent(UserVoiceChannelMoveEvent event) {
 
