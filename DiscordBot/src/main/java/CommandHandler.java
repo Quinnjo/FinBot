@@ -6,6 +6,7 @@ import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
+import sx.blah.discord.handle.obj.IRole;
 import sx.blah.discord.handle.obj.IUser;
 import sx.blah.discord.util.Image;
 
@@ -33,6 +34,7 @@ public class CommandHandler {
 		IChannel channel = event.getChannel();
 		IUser user = event.getAuthor();
 
+		//admin role id: 197157674947837952L
 		// each command is a case; some commands have aliases.
 		switch (command) {
 		case "ping":
@@ -64,12 +66,36 @@ public class CommandHandler {
 			break;
 		case "logout":
 		case "shutdown":
+		case "logoff":
+		case "kill":
+			if (!user.hasRole(client.getRoleByID(197157674947837952L))) {
+				BotUtils.sendMessage(channel, "Nice try");
+				return;
+			}
 			client.logout();
 			break;
 		case "hello":
 			BotUtils.sendMessage(channel, "Hi " + user.getName());
 			break;
-
+		case "role":
+			if (!event.getChannel().equals(client.getChannelByID(450109559541858304L))) {
+				return;
+			}
+			IRole role = client.getGuildByID(197156354425749504L).getRolesByName(args.get(0)).get(0);
+			String[] r = {"PUBG", "Fortnite", "CS:GO", "Voltz", "RL", "FTB", "Tekkit"};
+			List<String> selfRoles = Arrays.asList(r);
+			if (!selfRoles.contains(role.getName())) {
+				BotUtils.sendMessage(channel, "You cannot add this role to yourself");
+				return;
+			}
+			if (user.hasRole(role)) {
+				user.removeRole(role);
+				BotUtils.sendMessage(channel, "Removed role " + role.getName() + " from " + user.getNicknameForGuild(client.getGuildByID(197156354425749504L)));
+			} else {
+				user.addRole(role);
+				BotUtils.sendMessage(channel, "Added role " + role.getName() + " to " + user.getNicknameForGuild(client.getGuildByID(197156354425749504L)));
+			}
+			break;
 		}
 
 	}
