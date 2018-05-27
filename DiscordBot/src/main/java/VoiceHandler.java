@@ -14,7 +14,6 @@ public class VoiceHandler {
 	 */
 	@EventSubscriber
 	public void onUserVoiceChannelJoinEvent(UserVoiceChannelEvent event) {
-
 		// do nothing if user already has voice channel role
 		if (event.getUser().hasRole(event.getGuild().getRolesByName(event.getVoiceChannel().getName()).get(0))) {
 			return;

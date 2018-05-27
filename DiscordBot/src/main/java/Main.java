@@ -18,10 +18,12 @@ public class Main {
 			e1.printStackTrace();
 		}
 		
-
+		//create a client
 		IDiscordClient client = BotUtils.getDiscordClient(token);
 
+		//register event listeners
 		client.getDispatcher().registerListener(new CommandHandler());
+		client.getDispatcher().registerListener(new VoiceHandler());
 
 		client.login();
 		try {
