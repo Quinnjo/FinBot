@@ -5,18 +5,19 @@ import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.RequestBuffer;
 
 import static java.lang.System.*;
+
 public class BotUtils {
-	
-	//command prefix
+
+	// command prefix
 	static String BOT_PREFIX = "~";
-	
-	//creates a new client
+
+	// creates a new client
 	static IDiscordClient getDiscordClient(String token) {
 		return new ClientBuilder().withToken(token).build();
 	}
-	
-	static void sendMessage(IChannel channel, String message) {
-		
+
+	public static void sendMessage(IChannel channel, String message) {
+
 		RequestBuffer.request(() -> {
 			try {
 				channel.sendMessage(message);
@@ -25,7 +26,6 @@ public class BotUtils {
 				e.printStackTrace();
 			}
 		});
-		
-	
+
 	}
 }
