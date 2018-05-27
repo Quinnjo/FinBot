@@ -15,7 +15,7 @@ public class CommandHandler {
 	// prints command and author to console
 	private static void commandLogger(MessageReceivedEvent event, String command) {
 		System.out.println(event.getAuthor().getName() + " (" + event.getAuthor().getNicknameForGuild(event.getGuild())
-				+ ") used command + \"" + command + "\"");
+				+ ") used command \"" + command + "\"");
 	}
 
 	@EventSubscriber
@@ -82,7 +82,8 @@ public class CommandHandler {
 			client.logout();
 			break;
 		case "hello":
-			BotUtils.sendMessage(channel, "Hi " + user.getName());
+		case "hi":
+			BotUtils.sendMessage(channel, "Hi " + user.getName() + "!");
 			break;
 		case "role":
 			if (!event.getChannel().equals(client.getChannelByID(450109559541858304L))) {
