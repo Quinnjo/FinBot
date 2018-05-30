@@ -1,3 +1,5 @@
+import java.util.*;
+
 //This interface contains the methods that a Command object must implement
 public interface ICommand {
   
