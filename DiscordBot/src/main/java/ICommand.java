@@ -12,6 +12,5 @@ public interface ICommand {
   
   //runs command
   void run(MessageReceivedEvent event);
-  
 
 }
