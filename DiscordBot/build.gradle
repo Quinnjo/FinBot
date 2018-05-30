@@ -8,6 +8,9 @@
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java-library'
+apply plugin: 'application'
+
+mainClassName = 'Main'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -27,5 +30,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     
     compile "com.discord4j:Discord4J:2.10.1"
+    compile "org.slf4j.impl.StaticLoggerBinder"
+    compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
+    compile group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
+    compile group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
 }
 
