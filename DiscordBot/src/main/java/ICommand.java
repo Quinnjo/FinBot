@@ -7,12 +7,12 @@ public interface ICommand {
   boolean test(MessageReceivedEvent event);
   
   //returns true if the command needs admin permissions, false if anyone can use it
-  boolean needsPermissions();
+  boolean isRestricted();
   
   //returns an List of all the ways a command can be called
   List<String> getAliases();
   
   //runs command
   void run(MessageReceivedEvent event);
-
+  
 }
