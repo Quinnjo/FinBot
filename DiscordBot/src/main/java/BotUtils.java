@@ -8,8 +8,9 @@ import static java.lang.System.*;
 
 public class BotUtils {
 
-	// command prefix
-	static String BOT_PREFIX = "~";
+	// constants
+	public static String BOT_PREFIX = "~";
+	public long ADMIN_ID = 197157674947837952L;
 
 	// creates a new client
 	static IDiscordClient getDiscordClient(String token) {
