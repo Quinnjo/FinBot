@@ -1,3 +1,4 @@
+package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -5,6 +6,7 @@ import java.util.Scanner;
 import sx.blah.discord.Discord4J;
 import sx.blah.discord.Discord4J.Discord4JLogger.Level;
 import sx.blah.discord.api.*;
+
 
 @SuppressWarnings("unused")
 public class Main {

@@ -1,4 +1,7 @@
+package commands;
 import java.util.*;
+
+import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
 //This interface contains the methods that a Command object must implement
 public interface ICommand {
@@ -14,5 +17,8 @@ public interface ICommand {
   
   //runs command
   void run(MessageReceivedEvent event);
+  
+  //changes args
+  ICommand withArgs(List<String> args);
   
 }
