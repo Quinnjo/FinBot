@@ -52,5 +52,8 @@ public class CommandHandler {
 		}
 
 	}
-
+	
+	public static List<ICommand> getCommands() {
+		return commandList;
+	}
 }
