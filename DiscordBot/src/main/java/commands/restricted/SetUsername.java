@@ -1,21 +1,25 @@
-package commands;
+package commands.restricted;
 
 import java.util.Arrays;
 
-import main.BotUtils;
+import commands.RestrictedCommand;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
-public class SetUsername extends Command {
+public class SetUsername extends RestrictedCommand {
 	
 	public SetUsername() {
-		restricted = true;
 		String[] names = {"setusername", "username", "setname"};
 		aliases = Arrays.asList(names);
 	}
 	
 	@Override
+	public String getInfo() {
+		return super.getInfo() + "<new username>";
+	}
+	
+	@Override
 	public boolean test(MessageReceivedEvent event) {
-		return aliases.contains(args.get(0)) && BotUtils.isAdmin(event) && args.size() > 1;
+		return super.test(event)  && args.size() > 1;
 	}
 
 	@Override
