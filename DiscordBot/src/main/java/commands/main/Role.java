@@ -1,31 +1,31 @@
-package commands;
+package commands.main;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import commands.Command;
 import main.BotUtils;
+
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IRole;
 
 public class Role extends Command {
 
-	public Role() {
-		restricted = false;
-		aliases = new ArrayList<>(0);
-		aliases.add("role");
+	@Override
+	public String getInfo() {
+		return super.getInfo() + "<role>";
 	}
-
+	
 	@Override
 	public boolean test(MessageReceivedEvent event) {
-		return aliases.contains(args.get(0)) && args.size() > 1;
+		return super.test(event) && args.size() > 1;
 	}
 
 	@Override
 	public void run(MessageReceivedEvent event) {
 
 		// acceptable roles to self-add
-		String[] r = { "PUBG", "Fortnite", "CS:GO", "Voltz", "RL", "FTB", "Tekkit" };
+		String[] r = { "PUBG", "Fortnite", "CS:GO", "Voltz", "RL", "FTB", "Tekkit", "Wargame" };
 		List<String> roles = Arrays.asList(r);
 
 		// gets role that user input
