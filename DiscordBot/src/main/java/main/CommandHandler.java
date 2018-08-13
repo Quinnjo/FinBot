@@ -11,6 +11,7 @@ import commands.main.Hello;
 import commands.main.Help;
 import commands.main.Ping;
 import commands.main.Role;
+import commands.main.Schedule;
 import commands.restricted.Logout;
 import commands.restricted.SetAvatar;
 import commands.restricted.SetUsername;
@@ -22,7 +23,7 @@ import sx.blah.discord.util.RequestBuffer;
 public class CommandHandler {
 
 	private static ICommand[] arr = { new Hello(), new Logout(), new Ping(), new SetAvatar(), new SetUsername(),
-			new Role(), new Help() };
+			new Role(), new Help(), new Schedule() };
 	private static List<ICommand> commandList = Arrays.asList(arr);
 
 	// prints command and author to console
@@ -56,8 +57,23 @@ public class CommandHandler {
 	@EventSubscriber
 	public void onMessageRecieved(MessageReceivedEvent event) {
 
+		//sends message to reaction adder
 		reactionAdder(event);
 
+		//if author has timeout role, send them to timeout
+		if (event.getAuthor().hasRole(event.getClient().getRoleByID(478387649162510356L))) {
+			
+			//give user Muted role
+			event.getAuthor().addRole(event.getClient().getRoleByID(474807212405948417L));
+			
+			MessageHandler.timeout(event);
+		}
+		
+		//pins message with an image in #schedules
+		if (event.getChannel().equals(event.getClient().getChannelByID(478598878241882123L)) &&  event.getMessage().getAttachments().size() > 0) {
+			MessageHandler.pinMessage(event.getMessage());
+		}
+		
 		// splits message into all arguments
 		String[] message = event.getMessage().getContent().split(" ");
 
